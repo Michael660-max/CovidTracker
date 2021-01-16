@@ -10,8 +10,9 @@ $.getJSON("https://covid-api.mmediagroup.fr/v1/cases", function(data){
     document.getElementById("deaths").innerHTML = ontario_data["deaths"];
 
     var recover_rate = 100 * ontario_data["recovered"] / (ontario_data["recovered"] + ontario_data["deaths"]);
+    recover_rate = Math.round(recover_rate * 100) / 100;
 
-    document.getElementById("recovery_rate").innerHTML = recover_rate;
+    document.getElementById("recovery_rate").innerHTML = recover_rate + "%";
 
     // Debug/Test
     console.log(ontario_data);
