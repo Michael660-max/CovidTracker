@@ -14,13 +14,16 @@ body{
     height: 777px;
 
     background: #588157;
+    overflow: hidden;
 }
 .container .content img{
     position: absolute;
-    width: 220px;
-    height: 123px;
-    left: 70px;
-    top: 63px;
+
+    object-fit: contain;
+    width:70%;
+
+    left: 50px;
+    top: -10px;
 
 }
 .container .content p{
@@ -47,16 +50,15 @@ body{
 
     background: #DAD7CD;
 }
-.container button{
+.container a{
     position: absolute;
     width: 195px;
     height: 47px;
     left: 83px;
     top: 668px;
-
+    
     background: #344E41;
     border-radius: 50px;
-
 
     font-family: Open Sans;
     font-style: normal;
@@ -65,10 +67,12 @@ body{
     line-height: 25px;
     /* identical to box height */
 
-
     color: #DAD7CD;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    padding-top: 10px;
 }
-
 .data-container label,p{
     font-family: Open Sans;
     font-style: normal;
