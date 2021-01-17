@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CovidTracker</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/mainPage.css">
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <img src="COVIDTRACKER.png" alt="WhyMask" class="logo">
+            <p>How important is it to wear a mask in your area?*</p>
+        </div>
+        <div class="forms">
+            <label for="Choose" id="Choose">Choose</label><br>
+            <select name="category" id="category">
+                <option value="Continent">Continent</option>
+                <option value="Country">Country</option>
+                <option value="State">State</option>
+                <option value="Province">Province</option>
+                <option value="City">City</option>
+            </select>
+            <label for="Specify" id="Specify">Specify</label><br>
+            <input type="text" name="location" id="location" placeholder="Location">
+            <button>Find</button>
+        </div>
+        <p class="message">Access Saved Locations? <a href="logIn.html">Sign in</a></p>
+        <p class="message1">Want to bookmark locations? <a href="signUp.html">Sign up</a></p>
+        <p class="notice">
+            Notice: It is always necessary to wear<br>
+            a mask when going outside to public<br>
+            areas during this COVID-19 pandemic.
+        </p>
+        <p class="ps">*Data is taken from COVID-19 data and air quality data</p>
+    </div>
+    
+</body>
+</html>
