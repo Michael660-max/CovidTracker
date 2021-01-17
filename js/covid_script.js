@@ -95,7 +95,7 @@ function getInfo(){
 // Returns a valid api parameter. If not possible, returns False
 function convertToApiParameters(param){
 
-    if (param == "Continent" || param == "Country"){
+    if (param == "continent" || param == "country"){
         return param.toLowerCase();
     }
     return false;
@@ -105,7 +105,7 @@ function convertToApiParameters(param){
 function replaceHTML(new_data){
 
     //console.log("Info at replaceHTML():");
-    //console.log(new_data);
+    console.log(new_data);
 
     // 5: Replaces the text in HTML file with output
     var recover_rate = 100 * new_data["recovered"] / (new_data["recovered"] + new_data["deaths"]);
@@ -121,9 +121,85 @@ function replaceHTML(new_data){
 
 }
 
+function populateLocation(category){
+    
+    //console.log("Function got called");
+    console.log(category);
+
+    //2: Get data from website
+    let options;
+
+    //3: Use for loop to go thru data
+
+    // if continent, there is no ["All"]. A dictionary must be created first.
+    if (category == "continent"){
+
+        fetch(base_url + "?" + category + "=" + location).then(res => res.json()).then(data => {
+            
+            //console.log("data:");
+            //console.log(data);
+
+            // create a dict to store data
+            new_data = {
+                "confirmed" : 0,
+                "recovered" : 0,
+                "deaths" : 0
+            }
+
+            //console.log ("Initializing new_data!");
+            //console.log(new_data);
+
+            // loop over the json to get the informations
+            $.each(data, function(country, all_info){
+
+                /*
+                console.log("Country");
+                console.log(country)
+
+                console.log("All_info");
+                console.log(all_info);
+                */
+                new_data["confirmed"] += all_info["All"]["confirmed"];
+                new_data["recovered"] += all_info["All"]["recovered"];
+                new_data["deaths"] += all_info["All"]["deaths"];
+
+            });
+
+            //console.log("new_data");
+            //console.log(new_data);
+            replaceHTML(new_data);
+
+        });
+
+    }
+
+    // directly pass JSON file thru if country (["All"] exists)
+    else if (category == "country"){
+
+        fetch(base_url).then(res => res.json()).then(all_data => {
+            //console.log(all_data);
+            options = Object.keys(all_data);
+            //replaceHTML(new_data);
+            //console.log(options);
+        });
+
+    }
+
+    else {
+        //Not implemented
+    }
+
+    var select = document.getElementById("location"); 
+
+    
+}
+
 function getInfo(category, location){
 
-    console.log("Function got called");
+    //console.log("Function got called");
+    console.log(category);
+    console.log(location);
+
 
     //2: Get data from website
     let new_data;
@@ -176,7 +252,7 @@ function getInfo(category, location){
     else if (category == "country"){
 
         fetch(base_url + "?" + category + "=" + location).then(res => res.json()).then(country_or_continent_data => {
-            //console.log(country_or_continent_data);
+            console.log(country_or_continent_data);
             new_data = country_or_continent_data.All;
             replaceHTML(new_data);
         });
@@ -238,14 +314,17 @@ function getInfo(category, location){
     
 }
 
-// listen for submit button press. if presssed, doApiSearch()
-document.getElementById("Find").addEventListener("click", () => {
 
-    console.log("clicked");
+
+// listen for submit button press. if presssed, doApiSearch()
+document.getElementById("start").addEventListener("click", () => {
+    //console.log("clicked");
 
     // 1: Gets input from HTML file
     const location = document.getElementById('location').value;
     let category = document.getElementById('category').value;
+
+    //console.log(category);
 
     category = convertToApiParameters(category);
 
@@ -254,5 +333,25 @@ document.getElementById("Find").addEventListener("click", () => {
     //console.log("category= " + category);
 
     getInfo(category, location);
+
+});
+
+// listen for submit button press. if presssed, doApiSearch()
+document.getElementById("category").addEventListener("change", () => {
+    //console.log("clicked");
+
+    // 1: Gets input from HTML file
+    const location = document.getElementById('location').value;
+    let category = document.getElementById('category').value;
+
+    console.log(category);
+
+    //category = convertToApiParameters(category);
+
+    // debug
+    //console.log("location= " + location);
+    //console.log("category= " + category);
+
+    populateLocation(category);
 
 });
