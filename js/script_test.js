@@ -140,7 +140,9 @@ function getInfo(category, location){
         var found_the_place = false;
 
         // Use a for loop to find it.
+
         $.getJSON(base_url, function(data){
+
             $.each(data, function(country, city_value_pairs){
                 
                 console.log("Outer loop");
@@ -153,12 +155,13 @@ function getInfo(category, location){
                     console.log(city);
                     console.log(city_data);
 
-                    if (city == category){
+                    if (city == location){
                         
                         console.log("found_the_place!")
 
                         found_the_place = true;
                         new_data = city_value_pairs[city];
+                        replaceHTML(new_data);
                         // special way to break out of jQuery's loops
                         return false;
                     }
