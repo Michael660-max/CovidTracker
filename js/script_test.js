@@ -3,11 +3,20 @@
 
 var base_url = "https://covid-api.mmediagroup.fr/v1/cases";
 
-var input_info;
+var country;
+var continent;
+
+function createParameters(){
+
+    var parameters;
+
+    
+
+}
 
 function getInfo(){
 
-    $.getJSON(base_url + input_info, function(data){
+    $.getJSON(base_url + createParameters(), function(data){
         
         // rounded to 2 demical places
         var recover_rate = 100 * data["recovered"] / (data["recovered"] + data["deaths"]);
@@ -27,6 +36,7 @@ function getInfo(){
 }
 
 var button = select('#submit');
-input_info = select('#location');
+country = select('#country');
+continent = select('#continent');
 
 button.mousePressed(getInfo());
