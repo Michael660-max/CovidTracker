@@ -11,28 +11,65 @@ body{
 .container{
     position: relative;
     width: 360px;
-    height: 640px;
-    background-color: #DAD7CD;
-    overflow: hidden;
+    height: 777px;
+    overflow:hidden;
+    background: #588157;
+}
+.container .content img{
+    position: absolute;
+    width: 220px;
+    height: 123px;
+    left: 70px;
+    top: 63px;
+
+}
+.container .content p{
+    position: absolute;
+    width: 295px;
+    height: 16px;
+    left: 33px;
+    top: 173px;
+
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+
+    color: #DAD7CD;
+}
+.data-container{
+    position: absolute;
+    width: 259px;
+    height: 383px;
+    left: 51px;
+    top: 237px;
+
+    background: #DAD7CD;
+}
+.container button{
+    position: absolute;
+    width: 195px;
+    height: 47px;
+    left: 83px;
+    top: 668px;
+
+    background: #344E41;
+    border-radius: 50px;
+
+
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    /* identical to box height */
+
+
+    color: #DAD7CD;
 }
 
-.content img{
-    position: absolute;
-    width: 311px;
-    height: 80px;
-    left: 22px;
-    top: 21px;
-
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.content p{
-    position: absolute;
-    width: 319px;
-    height: 50px;
-    left: 16px;
-    top: 124px;
-
+.data-container label,p{
     font-family: Open Sans;
     font-style: normal;
     font-weight: normal;
@@ -41,155 +78,78 @@ body{
     text-align: center;
 
     color: #787055;
-}
 
-.forms label{
+}
+.data-container h1{
+    position: absolute;
+    width: 209px;
+    height: 25px;
+    left: 25px;
+    top: 19px;
+
     font-family: Open Sans;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
     line-height: 25px;
 
-    color: #787055;
-}
-
-.forms #Choose{
-    position: absolute;
-    width: 66px;
-    height: 50px;
-    left: 34px;
-    top: 183px;
-}
-
-.forms #Specify{
-    position: absolute;
-    width: 69px;
-    height: 25px;
-    left: 35px;
-    top: 268px;
-}
-
-.forms input, .forms select{
-    background: #BFB9A4;
-    border-radius: 10px;
-
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 22px;
-
-    color: #787055;
-    padding: 0px 0px 0px 20px
-}
-.forms select{
-    position: absolute;
-    width: 300px;
-    height: 40px;
-    left: 28px;
-    top: 214px;
-}
-.forms input{
-    position: absolute;
-    width: 300px;
-    height: 40px;
-    left: 28px;
-    top: 300px;
-}
-.forms button{
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 25px;
-    color: #DAD7CD;
-
-    position: absolute;
-    width: 300px;
-    height: 40px;
-    left: 28px;
-    top: 367px;
-
-    background: #588157;
-    border-radius: 20px;
-}
-
-.container .message{
-    position: absolute;
-    width: 268px;
-    height: 25px;
-    left: 41px;
-    top: 440px;
-
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 25px;
-    /* identical to box height */
-
+    text-align: center;
 
     color: #787055;
 }
-
-.container .message1{
+.data-container #cc{
     position: absolute;
-    width: 315px;
-    height: 25px;
-    left: 20px;
-    top: 474px;
-
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 25px;
-    /* identical to box height */
-
-
-    color: #787055;
+    width: 207px;
+    height: 27px;
+    left: 27px;
+    top: 80px;
 }
-.container a{
-    text-decoration: none;
-    color:#787055;
-    font-weight: bold;
-}
-
-.container .notice{
+.data-container #current_cases{
     position: absolute;
-    width: 312px;
-    height: 84px;
-    left: 23px;
-    top: 513px;
-
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
-    color: #881B1B;
-    padding: 9px 8px 9px 12px;
-
-    background: #BFB9A4;
-    border: 1px solid #FF0000;
-    box-sizing: border-box;
-    border-radius: 10px;
+    width: 207px;
+    height: 29px;
+    left: 25px;
+    top: 107px;
 }
-
-.container .ps{
+.data-container #r{
     position: absolute;
-    width: 337px;
-    height: 18px;
-    left: 16px;
-    top: 612px;
-
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 13px;
-    line-height: 18px;
-    /* identical to box height */
-
-
-    color: #787055;
+    width: 207px;
+    height: 24px;
+    left: 25px;
+    top: 155px;
+}
+.data-container #recovered{
+    position: absolute;
+    width: 207px;
+    height: 29px;
+    left: 25px;
+    top: 182px;
+}
+.data-container #d{
+    position: absolute;
+    width: 207px;
+    height: 28px;
+    left: 25px;
+    top: 230px;
+}
+.data-container #deaths{
+    position: absolute;
+    width: 207px;
+    height: 29px;
+    left: 25px;
+    top: 254px;
+}
+.data-container #rr{
+    position: absolute;
+    width: 207px;
+    height: 29px;
+    left: 25px;
+    top: 299px;
+}
+.data-container #recovery_rate{
+    position: absolute;
+    width: 207px;
+    height: 29px;
+    left: 25px;
+    top: 328px;
 }
