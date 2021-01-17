@@ -1,10 +1,7 @@
 // This script gets data from GitHub
 // This script directly outputs variables onto the screen
 
-var base_url = "https://covid-api.mmediagroup.fr/v1/cases";
-
-var location;
-var category;
+const base_url = "https://covid-api.mmediagroup.fr/v1/cases";
 
 /* Old code, just skip this
 
@@ -103,18 +100,38 @@ function convertToApiParameters(param){
 
 }
 
-function getInfo(){
+function replaceHTML(new_data){
+
+    // 5: Replaces the text in HTML file with output
+    var recover_rate = 100 * new_data["recovered"] / (new_data["recovered"] + new_data["deaths"]);
+    recover_rate = Math.round(recover_rate * 100) / 100;
+    
+    console.log(recover_rate);
+
+    //document.getElementById("current_cases").innerHTML = new_data["confirmed"];
+    //document.getElementById("recovered").innerHTML = new_data["recovered"];
+    //document.getElementById("deaths").innerHTML = new_data["deaths"];
+
+    //document.getElementById("recovery_rate").innerHTML = recover_rate + "%";
+
+}
+
+function getInfo(category, location){
+
+    console.log("Function got called");
 
     //2: Get data from website
-    var new_data;
+    let new_data;
 
     //3: Use for loop to go thru data
     if (category != false){
 
-        // Easily read the data into the variable "data"
-        $.getJSON(base_url + "?" + category + "=", function(country_or_continent_data){
-            new_data = country_or_continent_data["All"];
+        fetch(base_url + "?" + category + "=" + location).then(res => res.json()).then(country_or_continent_data => {
+            console.log(country_or_continent_data);
+            new_data = country_or_continent_data.All;
+            replaceHTML(new_data);
         });
+        
     }
     // Category is a city/province/state, so we'll have to use a for loop to find it
     else{
@@ -158,27 +175,16 @@ function getInfo(){
 
     }
     
-    // 5: Replaces the text in HTML file with output
-    var recover_rate = 100 * new_data["recovered"] / (new_data["recovered"] + new_data["deaths"]);
-    recover_rate = Math.round(recover_rate * 100) / 100;
-    
-    document.getElementById("current_cases").innerHTML = new_data["confirmed"];
-    document.getElementById("recovered").innerHTML = new_data["recovered"];
-    document.getElementById("deaths").innerHTML = new_data["deaths"];
-
-    document.getElementById("recovery_rate").innerHTML = recover_rate + "%";
-    
 }
 
 // listen for submit button press. if presssed, doApiSearch()
-document.getElementById("Find").addEventListener("click", doApiSearch());
+document.getElementById("Find").addEventListener("click", () => {
 
-// does an api search when button gets pressed
-function doApiSearch(){
+    console.log("clicked");
 
     // 1: Gets input from HTML file
-    location = document.getElementById('#location');
-    category = document.getElementById('#category');
+    const location = document.getElementById('location').value;
+    let category = document.getElementById('category').value;
 
     category = convertToApiParameters(category);
 
@@ -186,6 +192,19 @@ function doApiSearch(){
     console.log("location= " + location);
     console.log("category= " + category);
 
-    getInfo(); 
+    getInfo(category, location);
+
+});
+
+console.log("Should run");
+
+// does an api search when button gets pressed
+function doApiSearch(){
+
+    console.log("js started");
+
+    
+
+    
 
 }
