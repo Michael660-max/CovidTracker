@@ -1,0 +1,195 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container{
+    position: relative;
+    width: 360px;
+    height: 640px;
+    background-color: #DAD7CD;
+    overflow: hidden;
+}
+
+.content img{
+    position: absolute;
+    width: 311px;
+    height: 80px;
+    left: 22px;
+    top: 21px;
+
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.content p{
+    position: absolute;
+    width: 319px;
+    height: 50px;
+    left: 16px;
+    top: 124px;
+
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
+
+    color: #787055;
+}
+
+.forms label{
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+
+    color: #787055;
+}
+
+.forms #Choose{
+    position: absolute;
+    width: 66px;
+    height: 50px;
+    left: 34px;
+    top: 183px;
+}
+
+.forms #Specify{
+    position: absolute;
+    width: 69px;
+    height: 25px;
+    left: 35px;
+    top: 268px;
+}
+
+.forms input, .forms select{
+    background: #BFB9A4;
+    border-radius: 10px;
+
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+
+    color: #787055;
+    padding: 0px 0px 0px 20px
+}
+.forms select{
+    position: absolute;
+    width: 300px;
+    height: 40px;
+    left: 28px;
+    top: 214px;
+}
+.forms input{
+    position: absolute;
+    width: 300px;
+    height: 40px;
+    left: 28px;
+    top: 300px;
+}
+.forms button{
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    color: #DAD7CD;
+
+    position: absolute;
+    width: 300px;
+    height: 40px;
+    left: 28px;
+    top: 367px;
+
+    background: #588157;
+    border-radius: 20px;
+}
+
+.container .message{
+    position: absolute;
+    width: 268px;
+    height: 25px;
+    left: 41px;
+    top: 440px;
+
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    /* identical to box height */
+
+
+    color: #787055;
+}
+
+.container .message1{
+    position: absolute;
+    width: 315px;
+    height: 25px;
+    left: 20px;
+    top: 474px;
+
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    /* identical to box height */
+
+
+    color: #787055;
+}
+.container a{
+    text-decoration: none;
+    color:#787055;
+    font-weight: bold;
+}
+
+.container .notice{
+    position: absolute;
+    width: 312px;
+    height: 84px;
+    left: 23px;
+    top: 513px;
+
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: #881B1B;
+    padding: 9px 8px 9px 12px;
+
+    background: #BFB9A4;
+    border: 1px solid #FF0000;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.container .ps{
+    position: absolute;
+    width: 337px;
+    height: 18px;
+    left: 16px;
+    top: 612px;
+
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 18px;
+    /* identical to box height */
+
+
+    color: #787055;
+}
