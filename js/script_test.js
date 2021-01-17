@@ -1,21 +1,32 @@
 // This script gets data from GitHub
 // This script directly outputs variables onto the screen
 
+var base_url = "https://covid-api.mmediagroup.fr/v1/cases";
 
-$.getJSON("https://covid-api.mmediagroup.fr/v1/cases", function(data){
+var input_info;
 
-    var country_data = data["Canada"]["Ontario"];
+function getInfo(){
 
-    var recover_rate = 100 * country_data["recovered"] / (country_data["recovered"] + country_data["deaths"]);
-    recover_rate = Math.round(recover_rate * 100) / 100;
+    $.getJSON(base_url + input_info, function(data){
+        
+        // rounded to 2 demical places
+        var recover_rate = 100 * data["recovered"] / (data["recovered"] + data["deaths"]);
+        recover_rate = Math.round(recover_rate * 100) / 100;
+        
+        document.getElementById("current_cases").innerHTML = data["confirmed"];
+        document.getElementById("recovered").innerHTML = data["recovered"];
+        document.getElementById("deaths").innerHTML = data["deaths"];
     
-    document.getElementById("current_cases").innerHTML = country_data["confirmed"];
-    document.getElementById("recovered").innerHTML = country_data["recovered"];
-    document.getElementById("deaths").innerHTML = country_data["deaths"];
+        document.getElementById("recovery_rate").innerHTML = recover_rate + "%";
+    
+        // Debug/Test
+        console.log(data);
+    
+    });
 
-    document.getElementById("recovery_rate").innerHTML = recover_rate + "%";
+}
 
-    // Debug/Test
-    console.log(country_data);
+var button = select('#submit');
+input_info = select('#location');
 
-});
+button.mousePressed(getInfo());
