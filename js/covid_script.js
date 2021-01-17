@@ -210,7 +210,7 @@ function getInfo(category, location){
 
                     if (city == location){
                         
-                        console.log("found_the_place!")
+                        //console.log("found_the_place!")
 
                         found_the_place = true;
                         new_data = city_value_pairs[city];
