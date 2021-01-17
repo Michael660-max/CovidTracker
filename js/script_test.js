@@ -3,14 +3,35 @@
 
 var base_url = "https://covid-api.mmediagroup.fr/v1/cases";
 
-var country;
-var continent;
+var country = "";
+var continent = "";
 
-function createParameters(){
+function createCountryParameters(){
 
-    var parameters;
+    var parameters = "?";
 
-    
+    parameters = parameters + "country=" + country;
+
+    // Debug
+    console.log("Finished country parameters: " + parameters)
+    return parameters;
+
+}
+
+function createContinentParameters(){
+
+    var parameters = "";
+
+    if (continent == ""){
+        parameters = parameters + "country=" + "Global";
+    }
+    else{
+        parameters = parameters + "country=" + country;
+    }
+
+    // Debug
+    console.log("Finished country parameters: " + parameters)
+    return parameters;
 
 }
 
