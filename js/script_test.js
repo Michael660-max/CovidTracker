@@ -3,9 +3,9 @@
 
 var base_url = "https://covid-api.mmediagroup.fr/v1/cases";
 
-var country_or_continent;
-var city_or_state_or_province;
-
+var location;
+var category;
+/*
 // changes user inputs from "" to whatever their values are supposed to be
 function processEmptyData(){
     if (country_or_continent == ""){
@@ -79,19 +79,19 @@ function getInfo(){
     document.getElementById("recovery_rate").innerHTML = recover_rate + "%";
 
 }
-
+*/
 // listen for submit button press. if presssed, doApiSearch()
 document.getElementById("Find").addEventListener("click", doApiSearch());
 
 // does an api search when button gets pressed
 function doApiSearch(){
 
-    country_or_continent = "";
-    city_or_state_or_province = "";
+    location = document.getElementById('#location');
+    category = document.getElementById('#category');
 
-    country_or_continent = select('#country_or_continent');
-    city_or_state_or_province = select('#city_or_state_or_province');
+    console.log("location= " + location);
+    console.log("category= " + category);
 
-    button.mousePressed(getInfo()); 
+    //getInfo(); 
 
 }
