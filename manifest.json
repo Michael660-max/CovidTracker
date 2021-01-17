@@ -1,5 +1,5 @@
 {
-    "manifest_version": 3,
+    "manifest_version": 2,
     "name" : "Covid Tracker",
     "description": "Latest Information about Covid-19",
     "version": "1.0.0",
