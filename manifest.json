@@ -8,6 +8,6 @@
         "default_icon": "icon_19.png",
         "default_popup": "mainPage.html"
     },
-    "permissions": ["activeTab"]
+    "permissions": []
 
 }
