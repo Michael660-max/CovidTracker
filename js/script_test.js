@@ -81,7 +81,7 @@ function getInfo(){
 }
 
 // listen for submit button press. if presssed, doApiSearch()
-document.getElementById("submit").addEventListener("click", doApiSearch());
+document.getElementById("Find").addEventListener("click", doApiSearch());
 
 // does an api search when button gets pressed
 function doApiSearch(){
