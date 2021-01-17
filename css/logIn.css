@@ -18,9 +18,9 @@ body{
 .people{
     position: absolute;
     width: 360px;
-    height: 157px;
+    height: 360px;
     left: 0px;
-    top: 80px;
+    top: 0px;
 }
 .introduction h4{
     position: absolute;
@@ -40,7 +40,7 @@ body{
 
     color: #787055;
 }
-.log-in .Email{
+.log-in .Country{
     position: absolute;
     width: 300px;
     height: 40px;
@@ -58,7 +58,7 @@ body{
     padding: 0px 0px 0px 15px;
     color: #787055;
 }
-.log-in .Password{
+.log-in .Location{
     position: absolute;
     width: 300px;
     height: 40px;
@@ -109,6 +109,80 @@ body{
     color: #787055;
 }
 .log-in-container a{
+    text-decoration: none;
+    color: #787055;
+    font-weight:900;
+}
+/*Sign-Up Page Styling*/
+.sign-up-container{
+    position: relative;
+    width: 360px;
+    height: 1223px;
+    background-color: #DAD7CD;
+    overflow: hidden;
+}
+
+.sign-up-container a{
+    text-decoration: none;
+    color: #787055;
+    font-weight:900;
+}
+
+.sign-up .Country{
+    position: absolute;
+    width: 300px;
+    height: 40px;
+    left: 30px;
+    top: 535px;
+
+    background: #BFB9A4;
+    border-radius: 10px;
+
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    padding: 0px 0px 0px 15px;
+    color: #787055;
+}
+
+
+.sign-up .Location{
+    position: absolute;
+    width: 300px;
+    height: 40px;
+    left: 30px;
+    top: 813px;
+
+    background: #BFB9A4;
+    border-radius: 10px;
+
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    padding: 0px 0px 0px 15px;
+    color: #787055;
+}
+
+
+.sign-up p{
+    position: absolute;
+    width: 278px;
+    height: 25px;
+    left: 41px;
+    top: 1170px;
+
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: #787055;
+}
+.sign-up p a{
     text-decoration: none;
     color: #787055;
     font-weight:900;
