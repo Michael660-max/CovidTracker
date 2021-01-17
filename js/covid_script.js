@@ -121,6 +121,13 @@ function replaceHTML(new_data){
 
 }
 
+function replaceLocationHTML(options){
+    $('#location').empty();
+    $.each(options, function(i, p) {
+        $('#location').append($('<option></option>').val(p).html(p));
+    });
+}
+
 function populateLocation(category){
     
     //console.log("Function got called");
@@ -134,51 +141,38 @@ function populateLocation(category){
     // if continent, there is no ["All"]. A dictionary must be created first.
     if (category == "continent"){
 
-        fetch(base_url + "?" + category + "=" + location).then(res => res.json()).then(data => {
-            
-            //console.log("data:");
-            //console.log(data);
+       const options = ["Australia and New Zealand",
+            "Baltic Countries",
+            "British Isles",
+            "Caribbean",
+            "Central Africa",
+            "Central America",
+            "Eastern Africa",
+            "Eastern Asia",
+            "Eastern Europe",
+            "Melanesia",
+            "Micronesia",
+            "Middle East",
+            "Nordic Countries",
+            "North America",
+            "Northern Africa",
+            "Polynesia",
+            "South America",
+            "Southeast Asia",
+            "Southern Africa",
+            "Southern Europe",
+            "Southern and Central Asia",
+            "Western Africa",
+            "Western Europe",]
 
-            // create a dict to store data
-            new_data = {
-                "confirmed" : 0,
-                "recovered" : 0,
-                "deaths" : 0
-            }
-
-            //console.log ("Initializing new_data!");
-            //console.log(new_data);
-
-            // loop over the json to get the informations
-            $.each(data, function(country, all_info){
-
-                /*
-                console.log("Country");
-                console.log(country)
-
-                console.log("All_info");
-                console.log(all_info);
-                */
-                new_data["confirmed"] += all_info["All"]["confirmed"];
-                new_data["recovered"] += all_info["All"]["recovered"];
-                new_data["deaths"] += all_info["All"]["deaths"];
-
-            });
-
-            //console.log("new_data");
-            //console.log(new_data);
-            replaceHTML(new_data);
-
-        });
-
+        replaceLocationHTML(options);
     }
 
     // directly pass JSON file thru if country (["All"] exists)
     else if (category == "country"){
 
         fetch(base_url).then(res => res.json()).then(all_data => {
-            //console.log(all_data);
-            options = Object.keys(all_data);
+            replaceLocationHTML (Object.keys(all_data));
             //replaceHTML(new_data);
             //console.log(options);
         });
@@ -189,7 +183,7 @@ function populateLocation(category){
         //Not implemented
     }
 
-    var select = document.getElementById("location"); 
+    
 
     
 }
@@ -197,8 +191,8 @@ function populateLocation(category){
 function getInfo(category, location){
 
     //console.log("Function got called");
-    console.log(category);
-    console.log(location);
+    //console.log(category);
+    //console.log(location);
 
 
     //2: Get data from website
@@ -317,6 +311,7 @@ function getInfo(category, location){
 
 
 // listen for submit button press. if presssed, doApiSearch()
+/*
 document.getElementById("start").addEventListener("click", () => {
     //console.log("clicked");
 
@@ -324,34 +319,26 @@ document.getElementById("start").addEventListener("click", () => {
     const location = document.getElementById('location').value;
     let category = document.getElementById('category').value;
 
-    //console.log(category);
-
-    category = convertToApiParameters(category);
-
-    // debug
-    //console.log("location= " + location);
-    //console.log("category= " + category);
-
     getInfo(category, location);
+
+});*/
+
+// listen for submit button press. if presssed, doApiSearch()
+document.getElementById("category").addEventListener("change", () => {
+     let category = document.getElementById('category').value;
+
+    populateLocation(category);
 
 });
 
 // listen for submit button press. if presssed, doApiSearch()
-document.getElementById("category").addEventListener("change", () => {
+document.getElementById("location").addEventListener("change", () => {
     //console.log("clicked");
 
     // 1: Gets input from HTML file
     const location = document.getElementById('location').value;
     let category = document.getElementById('category').value;
 
-    console.log(category);
-
-    //category = convertToApiParameters(category);
-
-    // debug
-    //console.log("location= " + location);
-    //console.log("category= " + category);
-
-    populateLocation(category);
+    getInfo(category, location);
 
 });
