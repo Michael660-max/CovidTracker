@@ -342,3 +342,23 @@ document.getElementById("location").addEventListener("change", () => {
     getInfo(category, location);
 
 });
+
+// listen for submit button press. if presssed, doApiSearch()
+document.getElementById("category").addEventListener("change", () => {
+    //console.log("clicked");
+
+    // 1: Gets input from HTML file
+    const location = document.getElementById('location').value;
+    let category = document.getElementById('category').value;
+
+    console.log(category);
+
+    //category = convertToApiParameters(category);
+
+    // debug
+    //console.log("location= " + location);
+    //console.log("category= " + category);
+
+    populateLocation(category);
+
+});
