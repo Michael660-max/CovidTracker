@@ -104,17 +104,20 @@ function convertToApiParameters(param){
 
 function replaceHTML(new_data){
 
+    console.log("Info at replaceHTML():");
+    console.log(new_data);
+
     // 5: Replaces the text in HTML file with output
     var recover_rate = 100 * new_data["recovered"] / (new_data["recovered"] + new_data["deaths"]);
     recover_rate = Math.round(recover_rate * 100) / 100;
     
     console.log(recover_rate);
 
-    //document.getElementById("current_cases").innerHTML = new_data["confirmed"];
-    //document.getElementById("recovered").innerHTML = new_data["recovered"];
-    //document.getElementById("deaths").innerHTML = new_data["deaths"];
+    document.getElementById("current_cases").innerHTML = new_data["confirmed"];
+    document.getElementById("recovered").innerHTML = new_data["recovered"];
+    document.getElementById("deaths").innerHTML = new_data["deaths"];
 
-    //document.getElementById("recovery_rate").innerHTML = recover_rate + "%";
+    document.getElementById("recovery_rate").innerHTML = recover_rate + "%";
 
 }
 
