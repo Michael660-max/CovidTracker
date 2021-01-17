@@ -3,8 +3,8 @@
 
 var base_url = "https://covid-api.mmediagroup.fr/v1/cases";
 
-var country_or_continent = "";
-var city_or_state_or_province = "";
+var country_or_continent;
+var city_or_state_or_province;
 
 // changes user inputs from "" to whatever their values are supposed to be
 function processEmptyData(){
@@ -80,13 +80,18 @@ function getInfo(){
 
 }
 
-// not sure if while loop required
-//while (true){
+// listen for submit button press. if presssed, doApiSearch()
+document.getElementById("submit").addEventListener("click", doApiSearch());
 
-var button = select('#submit');
-country_or_continent = select('#country_or_continent');
-city_or_state_or_province = select('#city_or_state_or_province');
+// does an api search when button gets pressed
+function doApiSearch(){
 
-button.mousePressed(getInfo());
+    country_or_continent = "";
+    city_or_state_or_province = "";
 
-//}
+    country_or_continent = select('#country_or_continent');
+    city_or_state_or_province = select('#city_or_state_or_province');
+
+    button.mousePressed(getInfo()); 
+
+}
