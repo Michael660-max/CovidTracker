@@ -3,6 +3,16 @@
 
 const base_url = "https://covid-api.mmediagroup.fr/v1/cases";
 
+/* Steps this script does:
+
+1: Gets input from HTML file
+2: Get data from website
+3: Use for loop to go thru data
+4: Find and process data
+5: Replaces the text in HTML file with output
+
+*/
+
 /* Old code, just skip this
 
 // changes user inputs from "" to whatever their values are supposed to be
@@ -80,15 +90,7 @@ function getInfo(){
 }
 */
 
-/* Steps this script does:
 
-1: Gets input from HTML file
-2: Get data from website
-3: Use for loop to go thru data
-4: Find and process data
-5: Replaces the text in HTML file with output
-
-*/
 
 // Returns a valid api parameter. If not possible, returns False
 function convertToApiParameters(param){
@@ -124,15 +126,63 @@ function getInfo(category, location){
     let new_data;
 
     //3: Use for loop to go thru data
-    if (category != false){
+
+    // if continent, there is no ["All"]. A dictionary must be created first.
+    if (category == "continent"){
+
+        fetch(base_url + "?" + category + "=" + location).then(res => res.json()).then(data => {
+            
+            console.log("data:");
+            console.log(data);
+
+            // create a dict to store data
+            new_data = {
+                "confirmed" : 0,
+                "recovered" : 0,
+                "deaths" : 0
+            }
+
+            console.log ("Initializing new_data!");
+            console.log(new_data);
+
+            // loop over the json to get the informations
+            $.each(data, function(country, all_info){
+
+                /*
+                console.log("Country");
+                console.log(country)
+
+                console.log("All_info");
+                console.log(all_info);
+                */
+
+                debugger;
+                
+                new_data["confirmed"] += all_info["All"]["confirmed"];
+                new_data["recovered"] += all_info["All"]["recovered"];
+                new_data["deaths"] += all_info["All"]["deaths"];
+
+            });
+
+            console.log("new_data");
+            console.log(new_data);
+            replaceHTML(new_data);
+
+        });
+
+    }
+
+    // directly pass JSON file thru if country (["All"] exists)
+    else if (category == "country"){
 
         fetch(base_url + "?" + category + "=" + location).then(res => res.json()).then(country_or_continent_data => {
             console.log(country_or_continent_data);
             new_data = country_or_continent_data.All;
             replaceHTML(new_data);
         });
-        
+
     }
+
     // Category is a city/province/state, so we'll have to use a for loop to find it
     else{
         
@@ -140,20 +190,23 @@ function getInfo(category, location){
         var found_the_place = false;
 
         // Use a for loop to find it.
-
         $.getJSON(base_url, function(data){
 
             $.each(data, function(country, city_value_pairs){
                 
+                /*
                 console.log("Outer loop");
                 console.log(country);
                 console.log(city_value_pairs);
+                */
 
                 $.each(city_value_pairs, function(city, city_data){
 
+                    /*
                     console.log("Inner loop");
                     console.log(city);
                     console.log(city_data);
+                    */
 
                     if (city == location){
                         
@@ -175,6 +228,11 @@ function getInfo(category, location){
             });
 
         });
+
+        if (! found_the_place){
+            new_data = data["Global"]["All"];
+            replaceHTML(new_data);
+        }
 
     }
     
@@ -198,16 +256,3 @@ document.getElementById("Find").addEventListener("click", () => {
     getInfo(category, location);
 
 });
-
-console.log("Should run");
-
-// does an api search when button gets pressed
-function doApiSearch(){
-
-    console.log("js started");
-
-    
-
-    
-
-}
