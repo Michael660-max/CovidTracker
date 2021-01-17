@@ -157,3 +157,23 @@ body{
     left: 25px;
     top: 328px;
 }
+.container #category{
+    position: absolute;
+    width: 300px;
+    height: 40px;
+    left: 51px;
+    top: 594px;
+
+    background: #BFB9A4;
+    border-radius: 10px;
+}
+.container #location{
+    position: absolute;
+    width: 300px;
+    height: 40px;
+    left: 51px;
+    top: 631px;
+
+    background: #BFB9A4;
+    border-radius: 10px;
+}
