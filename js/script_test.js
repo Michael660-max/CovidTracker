@@ -5,7 +5,9 @@ var base_url = "https://covid-api.mmediagroup.fr/v1/cases";
 
 var location;
 var category;
-/*
+
+/* Old code, just skip this
+
 // changes user inputs from "" to whatever their values are supposed to be
 function processEmptyData(){
     if (country_or_continent == ""){
@@ -80,18 +82,110 @@ function getInfo(){
 
 }
 */
+
+/* Steps this script does:
+
+1: Gets input from HTML file
+2: Get data from website
+3: Use for loop to go thru data
+4: Find and process data
+5: Replaces the text in HTML file with output
+
+*/
+
+// Returns a valid api parameter. If not possible, returns False
+function convertToApiParameters(param){
+
+    if (param == "Continent" || param == "Country"){
+        return param.toLowerCase();
+    }
+    return false;
+
+}
+
+function getInfo(){
+
+    //2: Get data from website
+    var new_data;
+
+    //3: Use for loop to go thru data
+    if (category != false){
+
+        // Easily read the data into the variable "data"
+        $.getJSON(base_url + "?" + category + "=", function(country_or_continent_data){
+            new_data = country_or_continent_data["All"];
+        });
+    }
+    // Category is a city/province/state, so we'll have to use a for loop to find it
+    else{
+        
+        // checks if we found something in the for loop. if not, default to getting "Global" data
+        var found_the_place = false;
+
+        // Use a for loop to find it.
+        $.getJSON(base_url, function(data){
+            $.each(data, function(country, city_value_pairs){
+                
+                console.log("Outer loop");
+                console.log(country);
+                console.log(city_value_pairs);
+
+                $.each(city_value_pairs, function(city, city_data){
+
+                    console.log("Inner loop");
+                    console.log(city);
+                    console.log(city_data);
+
+                    if (city == category){
+                        
+                        console.log("found_the_place!")
+
+                        found_the_place = true;
+                        new_data = city_value_pairs[city];
+                        // special way to break out of jQuery's loops
+                        return false;
+                    }
+                });
+
+                if (found_the_place){
+                    // special way to break out of jQuery's loops
+                    return false;
+                }
+
+            });
+
+        });
+
+    }
+    
+    // 5: Replaces the text in HTML file with output
+    var recover_rate = 100 * new_data["recovered"] / (new_data["recovered"] + new_data["deaths"]);
+    recover_rate = Math.round(recover_rate * 100) / 100;
+    
+    document.getElementById("current_cases").innerHTML = new_data["confirmed"];
+    document.getElementById("recovered").innerHTML = new_data["recovered"];
+    document.getElementById("deaths").innerHTML = new_data["deaths"];
+
+    document.getElementById("recovery_rate").innerHTML = recover_rate + "%";
+    
+}
+
 // listen for submit button press. if presssed, doApiSearch()
 document.getElementById("Find").addEventListener("click", doApiSearch());
 
 // does an api search when button gets pressed
 function doApiSearch(){
 
+    // 1: Gets input from HTML file
     location = document.getElementById('#location');
     category = document.getElementById('#category');
 
+    category = convertToApiParameters(category);
+
+    // debug
     console.log("location= " + location);
     console.log("category= " + category);
 
-    //getInfo(); 
+    getInfo(); 
 
 }
