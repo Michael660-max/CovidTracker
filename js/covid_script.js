@@ -104,14 +104,14 @@ function convertToApiParameters(param){
 
 function replaceHTML(new_data){
 
-    console.log("Info at replaceHTML():");
-    console.log(new_data);
+    //console.log("Info at replaceHTML():");
+    //console.log(new_data);
 
     // 5: Replaces the text in HTML file with output
     var recover_rate = 100 * new_data["recovered"] / (new_data["recovered"] + new_data["deaths"]);
     recover_rate = Math.round(recover_rate * 100) / 100;
     
-    console.log(recover_rate);
+    //console.log(recover_rate);
 
     document.getElementById("current_cases").innerHTML = new_data["confirmed"];
     document.getElementById("recovered").innerHTML = new_data["recovered"];
@@ -135,8 +135,8 @@ function getInfo(category, location){
 
         fetch(base_url + "?" + category + "=" + location).then(res => res.json()).then(data => {
             
-            console.log("data:");
-            console.log(data);
+            //console.log("data:");
+            //console.log(data);
 
             // create a dict to store data
             new_data = {
@@ -145,8 +145,8 @@ function getInfo(category, location){
                 "deaths" : 0
             }
 
-            console.log ("Initializing new_data!");
-            console.log(new_data);
+            //console.log ("Initializing new_data!");
+            //console.log(new_data);
 
             // loop over the json to get the informations
             $.each(data, function(country, all_info){
@@ -158,17 +158,14 @@ function getInfo(category, location){
                 console.log("All_info");
                 console.log(all_info);
                 */
-
-                debugger;
-                
                 new_data["confirmed"] += all_info["All"]["confirmed"];
                 new_data["recovered"] += all_info["All"]["recovered"];
                 new_data["deaths"] += all_info["All"]["deaths"];
 
             });
 
-            console.log("new_data");
-            console.log(new_data);
+            //console.log("new_data");
+            //console.log(new_data);
             replaceHTML(new_data);
 
         });
@@ -179,7 +176,7 @@ function getInfo(category, location){
     else if (category == "country"){
 
         fetch(base_url + "?" + category + "=" + location).then(res => res.json()).then(country_or_continent_data => {
-            console.log(country_or_continent_data);
+            //console.log(country_or_continent_data);
             new_data = country_or_continent_data.All;
             replaceHTML(new_data);
         });
@@ -253,8 +250,8 @@ document.getElementById("Find").addEventListener("click", () => {
     category = convertToApiParameters(category);
 
     // debug
-    console.log("location= " + location);
-    console.log("category= " + category);
+    //console.log("location= " + location);
+    //console.log("category= " + category);
 
     getInfo(category, location);
 
