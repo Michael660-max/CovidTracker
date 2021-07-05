@@ -5,4 +5,4 @@ cases, deaths, recorvery, and the probability of survival in any country/contine
 
 CovidTracker is currently in the process of being an official chrome extension.
 
-CovidTracker was built at Hack The North 2020++.
+CovidTracker was built at [Hack The North 2020++](https://hackthenorth2020.devpost.com/).
